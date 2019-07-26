@@ -1,0 +1,13 @@
+# Default values for bwce-configmap.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+bwce:
+  loglevel: DEBUG
+  monitoring:
+    enabled: true
+    urlconfig:
+      {
+        "url" : "http://bwcemon.jx-staging.52.169.105.1.nip.io:80"
+      }
+    javaopts: "-Dbw.monitor.batchsize=1 -Dbw.monitor.publishtimer=1500"
+

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bwce-configmap #-{{ .Release.Name }}
+data:
+  BW_LOGLEVEL: {{ .Values.bwce.loglevel }}
+{{- if .Values.bwce.monitoring.enabled }}
+  BW_APP_MONITORING_CONFIG: {{ .Values.bwce.monitoring.urlconfig | toJson | quote }}
+  BW_JAVA_OPTS: {{ .Values.bwce.monitoring.javaopts | quote }}
+{{- end }}

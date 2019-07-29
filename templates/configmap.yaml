@@ -4,7 +4,13 @@ metadata:
   name: bwce-configmap #-{{ .Release.Name }}
 data:
   BW_LOGLEVEL: {{ .Values.bwce.loglevel }}
+  BW_PROFILE: {{ .Values.bwce.bwprofile | quote }}
+  APP_CONFIG_PROFILE: {{ .Values.bwce.configprofile | quote }}
 {{- if .Values.bwce.monitoring.enabled }}
   BW_APP_MONITORING_CONFIG: {{ .Values.bwce.monitoring.urlconfig | toJson | quote }}
-  BW_JAVA_OPTS: {{ .Values.bwce.monitoring.javaopts | quote }}
+{{- end }}
+{{- if .Values.bwce.opentracing.enabled }}
+  BW_JAVA_OPTS: "{{ .Values.bwce.javaopts | quote }} {{ .Values.bwce.opentracing.javaopts | quote }}"
+{{- else}}
+  BW_JAVA_OPTS: {{ .Values.bwce.javaopts | quote }}
 {{- end }}

@@ -10,7 +10,7 @@ data:
   BW_APP_MONITORING_CONFIG: {{ .Values.bwce.monitoring.urlconfig | toJson | quote }}
 {{- end }}
 {{- if .Values.bwce.opentracing.enabled }}
-  BW_JAVA_OPTS: "{{ .Values.bwce.javaopts | quote }} {{ .Values.bwce.opentracing.javaopts | quote }}"
+  BW_JAVA_OPTS: {{printf "%s %s"  .Values.bwce.javaopts .Values.bwce.opentracing.javaopts }}
 {{- else}}
   BW_JAVA_OPTS: {{ .Values.bwce.javaopts | quote }}
 {{- end }}

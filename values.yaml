@@ -4,7 +4,7 @@
 bwce:
   loglevel: DEBUG
   javaopts: "-Dbw.monitor.batchsize=1 -Dbw.monitor.publishtimer=1500"
-  bwprofile: "docker"
+  bwprofile: "default"
   configprofile: "docker"
   monitoring:
     enabled: true
